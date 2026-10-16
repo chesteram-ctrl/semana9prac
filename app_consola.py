@@ -28,3 +28,14 @@ def registrar_solicitud(cliente, asunto):
     cola_pendientes.append(solicitud)
     siguiente_id += 1
     return solicitud
+
+
+def atender_siguiente():
+    if not cola_pendientes:
+        return None
+
+    solicitud = cola_pendientes.pop(0)
+    solicitud["estado"] = "atendida"
+    pila_historial.append(solicitud)
+
+    return solicitud
